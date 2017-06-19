@@ -30,6 +30,8 @@ export class ThongthanComponent implements OnInit{
     selectedItems = [];
     dropdownSettings = {};
     branches: Branch[];
+
+    //Service
     constructor(private thongthanService: ThongthanService) {}
 
     ngOnInit(){
@@ -95,11 +97,28 @@ export class ThongthanComponent implements OnInit{
     }
     onItemSelect(item:any){
         console.log(item);
-        console.log(this.selectedItems);
+
+        if(this.SizeSelectedItems.length > 0 && this.selectedItems.length == 0){
+            console.log(this.SizeSelectedItems);
+        }else{
+            console.log("Branch");
+            console.log(this.selectedItems);
+            console.log("Size");
+            console.log(this.SizeSelectedItems);
+        }
+
     }
     OnItemDeSelect(item:any){
         console.log(item);
-        console.log(this.selectedItems);
+
+        if(this.SizeSelectedItems.length > 0 && this.selectedItems.length == 0){
+            console.log(this.SizeSelectedItems);
+        }else{
+            console.log("Branch");
+            console.log(this.selectedItems);
+            console.log("Size");
+            console.log(this.SizeSelectedItems);
+        }
     }
     onSelectAll(items: any){
         console.log(items);

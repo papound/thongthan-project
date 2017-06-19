@@ -1,62 +1,70 @@
 <h1>คิดคูปองพนักงาน</h1>
-<md-card class="example-card">
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Brand</h4>
-        </div>
-        <div class="col-md-6">
-            <md-input-container>
-                <input mdInput placeholder="เลือก ยี่ห้อ" value="GQ" [(ngModel)]="BrandValue" (change)="printBrand()">
-            </md-input-container>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Lot Number#</h4>
-        </div>
-        <div class="col-md-6">
-            <md-input-container>
-                <input mdInput placeholder="Lot Number#" [(ngModel)]="LotNumber" (change)="printLotNo()">
-            </md-input-container>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Date</h4>
-        </div>
-        <div class="col-md-6">
-            <app-datepicker></app-datepicker>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Fabric Amount (Round(s))</h4>
-        </div>
-        <div class="col-md-6">
-            <md-input-container>
-                <input mdInput placeholder="จำนวนวง" [(ngModel)]="FabricAmount" (change)="printFabricAmount()" type="number" min="1">
-            </md-input-container>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Size</h4>
-        </div>
-        <div class="col-md-6">
-            <div class="myclass customclass">
-                <angular2-multiselect
-                        [data]="SizeList"
-                        [(ngModel)]="SizeSelectedItems"
-                        [settings]="SizeDropdownSettings"
-                        (onSelect)="onItemSelect($event)"
-                        (onDeSelect)="OnItemDeSelect($event)"
-                        (onSelectAll)="onSelectAll($event)"
-                        (onDeSelectAll)="onDeSelectAll($event)">
-                </angular2-multiselect>
+<!--<form (ngSubmit)="onSubmit(f)" #f="ngForm">-->
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+        <md-card class="example-card">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Brand</h4>
+                </div>
+                <div class="col-md-6">
+                    <md-input-container>
+                        <input mdInput placeholder="เลือก ยี่ห้อ" value="GQ" [(ngModel)]="BrandValue" (ngModelChange)="printBrand()" name="brand">
+                    </md-input-container>
+                </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Lot Number#</h4>
+                </div>
+                <div class="col-md-6">
+                    <md-input-container>
+                        <input mdInput placeholder="Lot Number#" [(ngModel)]="LotNumber" (ngModelChange)="printLotNo()" name="lotNo">
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Date</h4>
+                </div>
+                <div class="col-md-6">
+                    <app-datepicker></app-datepicker>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Fabric Amount (Round(s))</h4>
+                </div>
+                <div class="col-md-6">
+                    <md-input-container>
+                        <input mdInput placeholder="จำนวนวง" [(ngModel)]="FabricAmount" (ngModelChange)="printFabricAmount()" type="number" min="1" name="fa">
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Size</h4>
+                </div>
+                <div class="col-md-6">
+                    <div class="myclass customclass">
+                        <angular2-multiselect
+                                [data]="SizeList"
+                                [(ngModel)]="SizeSelectedItems"
+                                [settings]="SizeDropdownSettings"
+                                (onSelect)="onItemSelect($event)"
+                                (onDeSelect)="OnItemDeSelect($event)"
+                                (onSelectAll)="onSelectAll($event)"
+                                (onDeSelectAll)="onDeSelectAll($event)"
+                                [ngModelOptions]="{standalone: true}">
+                        </angular2-multiselect>
+                    </div>
+                </div>
+            </div>
+        </md-card>
     </div>
-</md-card>
+</form>
+<!--</form>-->
 <br><br>
 <hr>
+{{ value }}
 <!--<app-upload></app-upload>-->

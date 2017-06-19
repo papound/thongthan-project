@@ -1,5 +1,5 @@
 <md-input-container>
-    <input mdInput [mdDatepicker]="picker" placeholder="เลือก วันที่">
+    <input mdInput [mdDatepicker]="picker" placeholder="เลือก วันที่" [(ngModel)]="value" (ngModelChange)="printDate()" name="date">
     <!--[(ngModel)]="value" (change)="ngOnChanges()"-->
     <button mdSuffix [mdDatepickerToggle]="picker"></button>
 </md-input-container>
