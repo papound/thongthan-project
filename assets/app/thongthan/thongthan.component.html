@@ -1,0 +1,62 @@
+<h1>คิดคูปองพนักงาน</h1>
+<md-card class="example-card">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Brand</h4>
+        </div>
+        <div class="col-md-6">
+            <md-input-container>
+                <input mdInput placeholder="เลือก ยี่ห้อ" value="GQ" [(ngModel)]="BrandValue" (change)="printBrand()">
+            </md-input-container>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Lot Number#</h4>
+        </div>
+        <div class="col-md-6">
+            <md-input-container>
+                <input mdInput placeholder="Lot Number#" [(ngModel)]="LotNumber" (change)="printLotNo()">
+            </md-input-container>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Date</h4>
+        </div>
+        <div class="col-md-6">
+            <app-datepicker></app-datepicker>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Fabric Amount (Round(s))</h4>
+        </div>
+        <div class="col-md-6">
+            <md-input-container>
+                <input mdInput placeholder="จำนวนวง" [(ngModel)]="FabricAmount" (change)="printFabricAmount()" type="number" min="1">
+            </md-input-container>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Size</h4>
+        </div>
+        <div class="col-md-6">
+            <div class="myclass customclass">
+                <angular2-multiselect
+                        [data]="SizeList"
+                        [(ngModel)]="SizeSelectedItems"
+                        [settings]="SizeDropdownSettings"
+                        (onSelect)="onItemSelect($event)"
+                        (onDeSelect)="OnItemDeSelect($event)"
+                        (onSelectAll)="onSelectAll($event)"
+                        (onDeSelectAll)="onDeSelectAll($event)">
+                </angular2-multiselect>
+            </div>
+        </div>
+    </div>
+</md-card>
+<br><br>
+<hr>
+<!--<app-upload></app-upload>-->
