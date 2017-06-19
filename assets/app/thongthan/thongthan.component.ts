@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Branch} from "./branch.model";
 import {ThongthanService} from "./thongthan.service";
+import {NgForm} from "@angular/forms";
+import moment = require("moment");
 
 @Component({
     selector: 'app-dropdown',
@@ -33,6 +35,14 @@ export class ThongthanComponent implements OnInit{
 
     //Service
     constructor(private thongthanService: ThongthanService) {}
+
+    //Date
+    @Input() DateValue: Date;
+
+    printDate() {
+        console.log(moment(this.DateValue).format("DD/MM/YYYY"));
+    }
+
 
     ngOnInit(){
 
@@ -94,6 +104,7 @@ export class ThongthanComponent implements OnInit{
             classes:"myclass custom-class",
             limitSelection: null
         };
+
     }
     onItemSelect(item:any){
         console.log(item);
@@ -135,6 +146,25 @@ export class ThongthanComponent implements OnInit{
     }
     printLotNo(){
         console.log(this.LotNumber);
+    }
+
+    @Input() date: any;
+
+    onSubmit(form: NgForm) {
+
+        console.log(form.value.brand);
+        console.log(form.value.lotNo);
+        console.log(moment(form.value.date).format("DD/MM/YYYY"));
+        console.log(form.value.fa);
+
+        if (this.SizeSelectedItems.length > 0 && this.selectedItems.length == 0) {
+            console.log(this.SizeSelectedItems);
+        } else {
+            console.log("Branch");
+            console.log(this.selectedItems);
+            console.log("Size");
+            console.log(this.SizeSelectedItems);
+        }
     }
 
 }

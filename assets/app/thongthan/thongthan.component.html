@@ -9,7 +9,13 @@
                 </div>
                 <div class="col-md-6">
                     <md-input-container>
-                        <input mdInput placeholder="เลือก ยี่ห้อ" value="GQ" [(ngModel)]="BrandValue" (ngModelChange)="printBrand()" name="brand">
+                        <input mdInput
+                               placeholder="เลือก ยี่ห้อ"
+                               value="GQ"
+                               [(ngModel)]="BrandValue"
+                               (ngModelChange)="printBrand()"
+                               name="brand"
+                               required>
                     </md-input-container>
                 </div>
             </div>
@@ -19,7 +25,12 @@
                 </div>
                 <div class="col-md-6">
                     <md-input-container>
-                        <input mdInput placeholder="Lot Number#" [(ngModel)]="LotNumber" (ngModelChange)="printLotNo()" name="lotNo">
+                        <input mdInput
+                               placeholder="Lot Number#"
+                               [(ngModel)]="LotNumber"
+                               (ngModelChange)="printLotNo()"
+                               name="lotNo"
+                               required>
                     </md-input-container>
                 </div>
             </div>
@@ -28,7 +39,18 @@
                     <h4>Date</h4>
                 </div>
                 <div class="col-md-6">
-                    <app-datepicker></app-datepicker>
+                    <!--<app-datepicker name="dp" [(ngModel)]="date"></app-datepicker>-->
+                    <md-input-container>
+                        <input mdInput
+                               [mdDatepicker]="picker"
+                               placeholder="เลือก วันที่"
+                               [(ngModel)]="DateValue"
+                               (ngModelChange)="printDate()"
+                               name="date"
+                               required>
+                        <button mdSuffix [mdDatepickerToggle]="picker"></button>
+                    </md-input-container>
+                    <md-datepicker #picker></md-datepicker>
                 </div>
             </div>
             <div class="row">
@@ -37,7 +59,14 @@
                 </div>
                 <div class="col-md-6">
                     <md-input-container>
-                        <input mdInput placeholder="จำนวนวง" [(ngModel)]="FabricAmount" (ngModelChange)="printFabricAmount()" type="number" min="1" name="fa">
+                        <input mdInput
+                               placeholder="จำนวนวง"
+                               [(ngModel)]="FabricAmount"
+                               (ngModelChange)="printFabricAmount()"
+                               type="number"
+                               min="1"
+                               name="fa"
+                               required>
                     </md-input-container>
                 </div>
             </div>
@@ -60,11 +89,14 @@
                     </div>
                 </div>
             </div>
+            <md-card-actions>
+                <button md-button type="submit" [disabled]="!f.form.valid">Submit</button>
+                <button md-button (click)="f.reset()">Reset</button>
+            </md-card-actions>
         </md-card>
     </div>
 </form>
 <!--</form>-->
 <br><br>
 <hr>
-{{ value }}
 <!--<app-upload></app-upload>-->
