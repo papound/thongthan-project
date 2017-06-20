@@ -3,6 +3,9 @@ import {Branch} from "./branch.model";
 import {ThongthanService} from "./thongthan.service";
 import {NgForm} from "@angular/forms";
 import moment = require("moment");
+import {ErrorService} from "../errors/error.service";
+import {Error} from "../errors/error.model";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'app-dropdown',
@@ -34,7 +37,10 @@ export class ThongthanComponent implements OnInit{
     branches: Branch[];
 
     //Service
-    constructor(private thongthanService: ThongthanService) {}
+    constructor(private thongthanService: ThongthanService, private errorService: ErrorService) {
+    }
+
+    submitted = false;
 
     //Date
     @Input() DateValue: Date;
@@ -152,19 +158,33 @@ export class ThongthanComponent implements OnInit{
 
     onSubmit(form: NgForm) {
 
-        console.log(form.value.brand);
-        console.log(form.value.lotNo);
-        console.log(moment(form.value.date).format("DD/MM/YYYY"));
-        console.log(form.value.fa);
+        if (this.submitted == true) {
+            console.log(form.value.brand);
+            console.log(form.value.lotNo);
+            console.log(moment(form.value.date).format("DD/MM/YYYY"));
+            console.log(form.value.fa);
 
-        if (this.SizeSelectedItems.length > 0 && this.selectedItems.length == 0) {
-            console.log(this.SizeSelectedItems);
+            if (this.SizeSelectedItems.length > 0 && this.selectedItems.length == 0) {
+                console.log(this.SizeSelectedItems);
+            } else {
+                console.log("Branch");
+                console.log(this.selectedItems);
+                console.log("Size");
+                console.log(this.SizeSelectedItems);
+            }
         } else {
-            console.log("Branch");
-            console.log(this.selectedItems);
-            console.log("Size");
-            console.log(this.SizeSelectedItems);
+            console.log("Form is Reset!!");
+            var error_e = new Error("Form has been Reset!!", "Please fill your information again");
+            this.errorService.handleError(error_e);
+            return Observable.throw(error_e);
         }
+    }
+
+    formReset() {
+        console.log("Form is Reset!!");
+        var error_e = new Error("Form has been Reset!!", "Please fill your information again");
+        this.errorService.handleError(error_e);
+        return Observable.throw(error_e);
     }
 
 }

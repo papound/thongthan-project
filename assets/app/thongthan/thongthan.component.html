@@ -1,6 +1,6 @@
 <h1>คิดคูปองพนักงาน</h1>
 <!--<form (ngSubmit)="onSubmit(f)" #f="ngForm">-->
-<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+<form (ngSubmit)="onSubmit(f); submitted = true;" #f="ngForm">
     <div class="form-group">
         <md-card class="example-card">
             <div class="row">
@@ -90,8 +90,10 @@
                 </div>
             </div>
             <md-card-actions>
-                <button md-button type="submit" [disabled]="!f.form.valid">Submit</button>
-                <button md-button (click)="f.reset()">Reset</button>
+                <button md-raised-button type="submit" [disabled]="!f.form.valid || SizeSelectedItems.length == 0">
+                    Submit
+                </button>
+                <button md-raised-button (click)="f.reset(); SizeSelectedItems = []; formReset();">Reset</button>
             </md-card-actions>
         </md-card>
     </div>
