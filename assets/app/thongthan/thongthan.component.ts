@@ -52,6 +52,8 @@ export class ThongthanComponent implements OnInit{
 
     ngOnInit(){
 
+        this.submitted = false;
+
         //Branch
         const BranchDDList = [];
         const BranchDDObj = function (id, itemName) {
@@ -158,6 +160,15 @@ export class ThongthanComponent implements OnInit{
 
     onSubmit(form: NgForm) {
 
+        if (form.value.brand != "" &&
+            form.value.lotNo != "" &&
+            form.value.date != "" &&
+            form.value.fa != "" &&
+            this.SizeSelectedItems.length > 0
+        ) {
+            this.submitted = true;
+        }
+
         if (this.submitted == true) {
             console.log(form.value.brand);
             console.log(form.value.lotNo);
@@ -172,19 +183,24 @@ export class ThongthanComponent implements OnInit{
                 console.log("Size");
                 console.log(this.SizeSelectedItems);
             }
-        } else {
+
+            this.submitted = false;
+            this.SizeSelectedItems = [];
+            console.log("Form is Submitted Successfully!!");
+            form.reset();
+        }
+    }
+
+    formReset(form: NgForm) {
+
+        if (this.submitted == false) {
+            form.resetForm();
+            this.SizeSelectedItems = [];
             console.log("Form is Reset!!");
             var error_e = new Error("Form has been Reset!!", "Please fill your information again");
             this.errorService.handleError(error_e);
             return Observable.throw(error_e);
         }
-    }
-
-    formReset() {
-        console.log("Form is Reset!!");
-        var error_e = new Error("Form has been Reset!!", "Please fill your information again");
-        this.errorService.handleError(error_e);
-        return Observable.throw(error_e);
     }
 
 }
